@@ -20,17 +20,21 @@ const vstup1 = prompt(`Vyberte si číslo podniku ze kterého chcete objednat:
 const vstup2 = prompt("pro kolik lidí máme objednat catering?")
 const vstup3 = prompt("Zadejte název události")
 
-const myFce = (pocetLidi, o, event) => {
+const myFce = (pocetLidi, o) => {
     const celkem = Number(pocetLidi) * o.cena
-    document.body.innerHTML = `Událost ${event} s cateringem od ${o.nazev} pro ${pocetLidi} lidí za ${celkem},-`
+    return `cateringem od ${o.nazev} pro ${pocetLidi} lidí za ${celkem},-`
+}
+
+const createEvent = (event, fce) => {
+    document.body.innerHTML = `Událost ${event} s ${fce}`
 }
 
 if (vstup1 == 1) {
-    myFce(vstup2, o1, vstup3)
+    createEvent(vstup3, myFce(vstup2, o1))
 } else if (vstup1 == 2) {
-    myFce(vstup2, o2, vstup3)
+    createEvent(vstup3, myFce(vstup2, o2))
 } else if (vstup1 == 3) {
-    myFce(vstup2, o3, vstup3)
+    createEvent(vstup3, myFce(vstup2, o3))
 } else {
     document.body.innerHTML = `neplatná volba`
 }
